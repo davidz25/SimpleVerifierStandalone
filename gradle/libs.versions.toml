@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.0"
-kotlin = "1.9.0"
+kotlin = "2.1.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -15,7 +15,8 @@ code-scanner = "2.3.2"
 navigationCompose = "2.7.7"
 bouncy-castle = "1.78.1"
 compose-material-icons-extended = "1.6.7"
-ic-version = "202408.1"
+kotlinx-io = "0.4.0"
+multipaz = "0.90"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,13 +41,12 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 bouncy-castle-bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncy-castle" }
 bouncy-castle-bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncy-castle" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-material-icons-extended" }
-identity = { group = "com.android.identity", name = "identity", version.ref = "ic-version" }
-identity-doctypes = { group = "com.android.identity", name = "identity-doctypes", version.ref = "ic-version" }
-identity-mdoc = { group = "com.android.identity", name = "identity-mdoc", version.ref = "ic-version" }
-identity-android = { group = "com.android.identity", name = "identity-android", version.ref = "ic-version" }
-identity-android-legacy = { group = "com.android.identity", name = "identity-android-legacy", version.ref = "ic-version" }
+kotlinx-io-bytestring = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-bytestring", version.ref = "kotlinx-io"}
+multipaz = { group = "org.multipaz", name = "multipaz", version.ref = "multipaz" }
+multipaz-android-legacy = { group = "org.multipaz", name = "multipaz-android-legacy", version.ref = "multipaz" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 

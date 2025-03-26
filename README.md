@@ -1,6 +1,5 @@
-# Simple Verifier (standalone)
+This is an example of an application using the multipaz and multipaz-android-legacy libraries.
 
-This is an example of an application using the [OWF Identity Credential](https://github.com/openwallet-foundation-labs/identity-credential)
-libraries via Maven.
+Learn more about [Multipaz](https://github.com/openwallet-foundation-labs/identity-credential)…
 
 This is not an official or supported Google product.

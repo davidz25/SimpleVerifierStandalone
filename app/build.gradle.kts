@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -51,10 +52,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.identity)
-    implementation(libs.identity.doctypes)
-    implementation(libs.identity.mdoc)
-    implementation(libs.identity.android)
+    implementation(libs.multipaz)
+    implementation(libs.multipaz.android.legacy)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -71,6 +70,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.code.scanner)
     implementation(libs.bouncy.castle.bcprov)
+    implementation(libs.kotlinx.io.bytestring)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

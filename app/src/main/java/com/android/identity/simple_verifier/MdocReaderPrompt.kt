@@ -74,23 +74,24 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.android.identity.android.mdoc.deviceretrieval.VerificationHelper
 import com.android.identity.android.mdoc.transport.DataTransportOptions
-import com.android.identity.crypto.Algorithm
-import com.android.identity.mdoc.connectionmethod.ConnectionMethod
-import com.android.identity.mdoc.connectionmethod.ConnectionMethodBle
-import com.android.identity.mdoc.request.DeviceRequestGenerator
-import com.android.identity.mdoc.response.DeviceResponseParser
-import com.android.identity.util.Logger
+import org.multipaz.crypto.Algorithm
+import org.multipaz.mdoc.connectionmethod.MdocConnectionMethod
+import org.multipaz.mdoc.connectionmethod.MdocConnectionMethodBle
+import org.multipaz.mdoc.request.DeviceRequestGenerator
+import org.multipaz.mdoc.response.DeviceResponseParser
+import org.multipaz.util.Logger
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.CodeScannerView
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.android.identity.simple_verifier.ui.theme.SimpleVerifierStandaloneTheme
-import com.android.identity.util.UUID
+import org.multipaz.util.UUID
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.bouncycastle.jce.provider.BouncyCastleProvider
+import org.multipaz.mdoc.role.MdocRole
 import java.security.Security
 
 class MdocReaderPrompt(
@@ -105,7 +106,7 @@ class MdocReaderPrompt(
     private lateinit var vibrator: Vibrator
     var readerEngagement: ByteArray? = null
     var responseBytes: ByteArray? = null
-    private var mdocConnectionMethod: ConnectionMethod? = null
+    private var mdocConnectionMethod: MdocConnectionMethod? = null
 
     private lateinit var responseListener: VerificationHelper.Listener
     private lateinit var verification: VerificationHelper
@@ -150,13 +151,16 @@ class MdocReaderPrompt(
                 this@MdocReaderPrompt.readerEngagement = readerEngagement
             }
 
-            override fun onDeviceEngagementReceived(connectionMethods: List<ConnectionMethod>) {
+            override fun onDeviceEngagementReceived(connectionMethods: List<MdocConnectionMethod>) {
                 // Need to disambiguate the connection methods here to get e.g. two ConnectionMethods
                 // if both BLE modes are available at the same time.
                 Logger.d("Listener", "device engagement received")
                 navController.navigate("ReaderReady/Connecting")
                 vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK))
-                val availableMdocConnectionMethods = ConnectionMethod.disambiguate(connectionMethods)
+                val availableMdocConnectionMethods = MdocConnectionMethod.disambiguate(
+                    connectionMethods,
+                    MdocRole.MDOC_READER
+                )
                 if (availableMdocConnectionMethods.isNotEmpty()) {
                     this@MdocReaderPrompt.mdocConnectionMethod = availableMdocConnectionMethods.first()
                 }
@@ -206,10 +210,10 @@ class MdocReaderPrompt(
             }
         }
 
-        val connectionMethods = mutableListOf<ConnectionMethod>()
+        val connectionMethods = mutableListOf<MdocConnectionMethod>()
         val bleUuid = UUID.randomUUID()
         connectionMethods.add(
-            ConnectionMethodBle(
+            MdocConnectionMethodBle(
                 false,
                 true,
                 null,
