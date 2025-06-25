@@ -90,7 +90,6 @@ import org.multipaz.util.UUID
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.multipaz.mdoc.role.MdocRole
 import java.security.Security
 
@@ -241,11 +240,6 @@ class MdocReaderPrompt(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // This is needed to prefer BouncyCastle bundled with the app instead of the Conscrypt
-        // based implementation included in the OS itself.
-        Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME)
-        Security.addProvider(BouncyCastleProvider())
-
         // Fill the whole screen by default
         val bottomSheetDialog = dialog as BottomSheetDialog
         bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED

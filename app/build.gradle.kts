@@ -69,7 +69,6 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.code.scanner)
-    implementation(libs.bouncy.castle.bcprov)
     implementation(libs.kotlinx.io.bytestring)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

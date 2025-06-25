@@ -13,10 +13,9 @@ material = "1.12.0"
 navigationRuntimeKtx = "2.7.7"
 code-scanner = "2.3.2"
 navigationCompose = "2.7.7"
-bouncy-castle = "1.78.1"
 compose-material-icons-extended = "1.6.7"
 kotlinx-io = "0.4.0"
-multipaz = "0.91.0"
+multipaz = "0.92.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,8 +37,6 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 code-scanner = { module = "com.github.yuriy-budiyev:code-scanner", version.ref = "code-scanner" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-bouncy-castle-bcprov = { module = "org.bouncycastle:bcprov-jdk18on", version.ref = "bouncy-castle" }
-bouncy-castle-bcpkix = { module = "org.bouncycastle:bcpkix-jdk18on", version.ref = "bouncy-castle" }
 compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-material-icons-extended" }
 kotlinx-io-bytestring = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-bytestring", version.ref = "kotlinx-io"}
 multipaz = { group = "org.multipaz", name = "multipaz", version.ref = "multipaz" }
